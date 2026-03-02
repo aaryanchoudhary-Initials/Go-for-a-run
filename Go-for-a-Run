@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Go for a Run?</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+    background-size:400% 400%;
+    animation:bg 12s infinite alternate;
+}
+
+@keyframes bg{
+    0%{background-position:0% 50%;}
+    100%{background-position:100% 50%;}
+}
+
+.card{
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 15px 45px rgba(0,0,0,0.25);
+    width:90%;
+    max-width:380px;
+}
+
+h2{
+    margin-top:0;
+    color:#333;
+}
+
+button{
+    padding:12px 24px;
+    margin:10px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.25s;
+}
+
+#yes{
+    background:#2ecc71;
+    color:white;
+}
+
+#no{
+    background:#ff5c5c;
+    color:white;
+}
+
+#final{
+    display:none;
+    font-size:18px;
+    line-height:1.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2 id="question">Will you go for a run with me? 🏃</h2>
+
+    <div id="buttons">
+        <button id="yes">Yes 😊</button>
+        <button id="no">No 🙃</button>
+    </div>
+
+    <div id="final">
+        <h2>Yesss! 🎉</h2>
+        <p>
+        Tomorrow evening.<br>
+        Slow pace, no suffering 😄<br><br>
+        And post-run snack is mandatory.
+        </p>
+    </div>
+</div>
+
+<script>
+
+const questions=[
+"Are you sure?",
+"Really sure?",
+"Absolutely sure?",
+"What if it’s actually fun?",
+"I will run slow I promise",
+"What if we watch the sunset after?",
+"I will bring water",
+"You won’t even try once?",
+"This is your FINAL answer?",
+"Last chance to change your mind..."
+];
+
+let i=0;
+let yes=document.getElementById("yes");
+let no=document.getElementById("no");
+let q=document.getElementById("question");
+
+no.onclick=function(){
+
+    if(i<questions.length){
+        q.innerText=questions[i];
+        i++;
+    }
+    else{
+        let size=18;
+        setInterval(()=>{
+            size+=6;
+            yes.style.fontSize=size+"px";
+            yes.style.padding=(12+size/2)+"px "+(24+size/2)+"px";
+        },250);
+    }
+};
+
+yes.onclick=function(){
+    document.getElementById("buttons").style.display="none";
+    q.style.display="none";
+    document.getElementById("final").style.display="block";
+};
+
+</script>
+
+</body>
+</html>
